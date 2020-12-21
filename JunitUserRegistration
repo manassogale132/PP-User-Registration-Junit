@@ -66,6 +66,5 @@ public class UserRegisterTest {                                                 
         boolean result = userRegister.validatenumber("91 9863214579");
         Assert.assertEquals(true, result);
     }
-
 }
 
