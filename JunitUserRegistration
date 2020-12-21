@@ -3,8 +3,9 @@ import java.util.regex.Matcher;
 
 public class UserRegister {
 
-    String firstName = "[A-Z]{1}[a-z]{1,7}";
+     String firstName = "[A-Z]{1}[a-z]{1,7}";
      String lastName = "[A-Z]{1}[a-z]{1,7}";
+     String emailId = "(.+)@(.+)";
 
 
     public boolean validateFirstName(String fname) {
@@ -15,6 +16,11 @@ public class UserRegister {
      public boolean validateLastName(String lname) {
         Pattern pattern = Pattern.compile(lastName);
         return pattern.matcher(lname).matches();
+    }
+    
+     public boolean validateemail(String email) {
+        Pattern pattern = Pattern.compile(emailId);
+        return pattern.matcher(email).matches();
     }
     
 }
@@ -38,6 +44,13 @@ public class UserRegisterTest {
     public void lastName() {
         UserRegister userRegister = new UserRegister();
         boolean result = userRegister.validateLastName("Sogale");
+        Assert.assertEquals(true, result);
+    }
+    
+    @Test
+    public void email() {
+        UserRegister userRegister = new UserRegister();
+        boolean result = userRegister.validateemail("manassogale@gmail.com");
         Assert.assertEquals(true, result);
     }
 
