@@ -4,15 +4,22 @@ import java.util.regex.Matcher;
 public class UserRegister {
 
     String firstName = "[A-Z]{1}[a-z]{1,7}";
+     String lastName = "[A-Z]{1}[a-z]{1,7}";
 
 
     public boolean validateFirstName(String fname) {
         Pattern pattern = Pattern.compile(firstName);
         return pattern.matcher(fname).matches();
-
-
     }
+    
+     public boolean validateLastName(String lname) {
+        Pattern pattern = Pattern.compile(lastName);
+        return pattern.matcher(lname).matches();
+    }
+    
 }
+
+
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,7 +33,13 @@ public class UserRegisterTest {
         boolean result = userRegister.validateFirstName("Manas");
         Assert.assertEquals(true, result);
     }
-
+    
+    @Test
+    public void lastName() {
+        UserRegister userRegister = new UserRegister();
+        boolean result = userRegister.validateLastName("Sogale");
+        Assert.assertEquals(true, result);
+    }
 
 }
 
