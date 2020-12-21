@@ -1,1 +1,71 @@
-.
+.import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+
+public class UserRegister {
+
+     String firstName = "[A-Z]{1}[a-z]{1,7}";
+     String lastName = "[A-Z]{1}[a-z]{1,7}";
+     String emailId = "(.+)@(.+)";
+     String phoneNumber = "[1-9]{2}[ ][1-9]{10}";
+
+
+    public boolean validateFirstName(String fname) {
+        Pattern pattern = Pattern.compile(firstName);
+        return pattern.matcher(fname).matches();
+    }
+    
+     public boolean validateLastName(String lname) {
+        Pattern pattern = Pattern.compile(lastName);
+        return pattern.matcher(lname).matches();
+    }
+    
+     public boolean validateemail(String email) {
+        Pattern pattern = Pattern.compile(emailId);
+        return pattern.matcher(email).matches();
+    }
+    
+      public boolean validatenumber(String number) {
+        Pattern pattern = Pattern.compile(phoneNumber);
+        return pattern.matcher(number).matches();
+    }
+    
+}
+
+
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class UserRegisterTest {
+
+
+    @Test
+    public void firstName() {
+        UserRegister userRegister = new UserRegister();
+        boolean result = userRegister.validateFirstName("Manas");
+        Assert.assertEquals(true, result);
+    }
+    
+    @Test
+    public void lastName() {
+        UserRegister userRegister = new UserRegister();
+        boolean result = userRegister.validateLastName("Sogale");
+        Assert.assertEquals(true, result);
+    }
+    
+    @Test
+    public void email() {
+        UserRegister userRegister = new UserRegister();
+        boolean result = userRegister.validateemail("manassogale@gmail.com");
+        Assert.assertEquals(true, result);
+    }
+    
+    @Test
+    public void number() {
+        UserRegister userRegister = new UserRegister();
+        boolean result = userRegister.validatenumber("91 9863214579");
+        Assert.assertEquals(true, result);
+    }
+
+}
+
