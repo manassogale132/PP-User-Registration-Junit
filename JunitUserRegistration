@@ -36,31 +36,31 @@ public class UserRegister {
 import org.junit.Assert;
 import org.junit.Test;
 
-public class UserRegisterTest {
+public class UserRegisterTest {                                                                               //Test-Cases Class
 
 
-    @Test
-    public void firstName() {
+    @Test                                                                                                     //First-Name Test Method            
+    public void firstName() {           
         UserRegister userRegister = new UserRegister();
         boolean result = userRegister.validateFirstName("Manas");
         Assert.assertEquals(true, result);
     }
     
-    @Test
+    @Test                                                                                                      //Last-Name Test Method
     public void lastName() {
         UserRegister userRegister = new UserRegister();
         boolean result = userRegister.validateLastName("Sogale");
         Assert.assertEquals(true, result);
     }
     
-    @Test
+    @Test                                                                                                       //Email-id Test Method
     public void email() {
         UserRegister userRegister = new UserRegister();
         boolean result = userRegister.validateemail("manassogale@gmail.com");
         Assert.assertEquals(true, result);
     }
     
-    @Test
+    @Test                                                                                                       //Phone-Number Test Method
     public void number() {
         UserRegister userRegister = new UserRegister();
         boolean result = userRegister.validatenumber("91 9863214579");
