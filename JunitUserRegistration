@@ -10,9 +10,13 @@ public class UserRegister {
      String password = "^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$";
 
 
-    public boolean validateFirstName(String fname) {
-        Pattern pattern = Pattern.compile(firstName);
-        return pattern.matcher(fname).matches();
+   public boolean validateFirstName() throws UserRegisterException {
+        try {
+            Pattern pattern = Pattern.compile(firstName);
+            return pattern.matcher("manas").matches();
+        }catch (AssertionError e){
+            throw new UserRegisterException("Invalid Entry!");
+        }
     }
     
      public boolean validateLastName(String lname) {
@@ -30,7 +34,7 @@ public class UserRegister {
         return pattern.matcher(number).matches();
     }
     
-     public boolean validatepassword(String pass){
+      public boolean validatepassword(String pass){
         Pattern pattern = Pattern.compile(password);
         return pattern.matcher(pass).matches();
 
@@ -46,11 +50,19 @@ import org.junit.Test;
 public class UserRegisterTest {                                                                               //Test-Cases Class
 
 
-    @Test                                                                                                     //First-Name Test Method            
-    public void firstName() {           
+ @Test                                                                                                     //First-Name Test Method
+    public void firstName() {
         UserRegister userRegister = new UserRegister();
-        boolean result = userRegister.validateFirstName("Manas");
-        Assert.assertEquals(true, result);
+        boolean result = false;
+        try {
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(UserRegisterException.class);
+            result = userRegister.validateFirstName();
+            Assert.assertEquals(true,result);
+        } catch (UserRegisterException e) {
+            e.printStackTrace();
+        }
+
     }
     
     @Test                                                                                                      //Last-Name Test Method
@@ -74,13 +86,22 @@ public class UserRegisterTest {                                                 
         Assert.assertEquals(true, result);
     }
     
-    @Test                                                                                                       //Password Test Method
+    @Test                                                                                                      //Password Test Method
     public void pass() {
         UserRegister userRegister = new UserRegister();
         boolean result = userRegister.validatepassword("aaZZa44@");
         Assert.assertEquals(true, result);
     }
 
-
 }
+
+
+
+public class UserRegisterException extends Exception{
+
+    public UserRegisterException(String message) {
+        super(message);
+    }
+}
+
 
