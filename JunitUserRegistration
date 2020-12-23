@@ -97,7 +97,7 @@ public class UserRegisterTest {                                                 
 
 
 
-public class UserRegisterException extends Exception{
+public class UserRegisterException extends Exception{                                                       //Custom Exception Class for first-name
 
     public UserRegisterException(String message) {
         super(message);
